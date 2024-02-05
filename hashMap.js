@@ -2,10 +2,8 @@ class Node {
   constructor(key, value = null) {
     this.key = key;
     this.value = value;
-    this.next = null;
   }
 }
-
 class HashMap {
   constructor() {
     this.buckets = new Array(16).fill(null);
@@ -100,6 +98,16 @@ class HashMap {
     });
     return valueArr;
   }
+
+  entries() {
+    let pairArr = [];
+    this.buckets.forEach((bucket) => {
+      if (bucket) {
+        pairArr.push([bucket.key, bucket.value]);
+      }
+    });
+    return pairArr;
+  }
 }
 
 let Hash = new HashMap();
@@ -108,4 +116,4 @@ Hash.set("Remel", "King");
 Hash.set("Remel2", "King2");
 Hash.set("rem3", "random");
 
-console.log(Hash.keys());
+console.log(Hash.entries());
